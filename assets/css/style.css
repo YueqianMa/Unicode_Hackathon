@@ -369,7 +369,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 60vh;
-  background: url("../img/hero-bg.jpg") center center;
+  background: url("../img/hero-bg2.jpg") center center;
   background-size: cover;
   position: relative;
   z-index: 1;
@@ -2328,3 +2328,46 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+/*新增部分*/
+#easter_egg1{
+  background: linear-gradient(to right, rgb(239, 255, 19), rgb(251, 0, 0) 50%, rgb(255, 255, 255) 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 400ms ease;
+}
+
+#easter_egg1:hover{
+  background-position: 0 100%;
+}
+
+#easter_egg2{
+  background: linear-gradient(to right, rgb(255, 0, 76), rgba(111, 0, 255, 0.794) 50%, rgb(255, 255, 255) 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 500ms ease;
+}
+
+#easter_egg2:hover{
+  background-position: 0 100%;
+} 
+
+#easter_egg3{
+  background: linear-gradient(to right, rgb(239, 255, 19), rgb(251, 0, 0) 50%, rgb(82, 82, 82) 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 500ms ease;
+}
+
+#easter_egg3:hover{
+  background-position: 0 100%;
+} 
