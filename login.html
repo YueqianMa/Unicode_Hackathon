@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Avidian Management Log in" />
+    <title>Avidian Admin Management Site</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="jquery-3.5.1.js"></script>-->
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function validateEmail($email) {
+                // check if email is valid
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                return emailReg.test($email);
+            }
+
+            // $('.dialog').dialog({
+            //     // jQuery UI dialog property settings
+            //     draggable: false,
+            //     resizable: false,
+            //     modal: true,
+            //     autoOpen: false,
+            //     position: { my: 'top', at: 'top+150' },
+            //     width: 'auto',
+            // });
+
+            // $('#forgot_pwd').click(function () {
+            //     $('#forgot_email').val($('#email').val());
+            //     $('#forgot_pwd_dialog').dialog('open');
+            // })
+
+            // $('#forgot_pwd_email').click(function () {
+            //     var email = $('#forgot_email').val();
+            //     // $.ajax({
+            //     //     url: url + 'forgotStaff', // url read from web.config.js file 
+            //     //     method: 'post',
+            //     //     data: JSON.stringify({
+            //     //         'email': email,
+            //     //     }),
+            //     //     contentType: "application/json; charset=utf-8",
+            //     //     success: function (response) {
+            //     //         if (response == 0) {
+            //     //             alert("We just sent you a temporary password, please check your mailbox!");
+            //     //             $('#forgot_pwd_dialog').dialog('close');
+            //     //         } else if (response == 1) {
+            //     //             alert("This user doesn't exist in our database.");
+            //     //         } else if (response == -1) {
+            //     //             alert("Error!")
+            //     //         }
+            //     //     },
+            //     //     error: function (err) {
+            //     //         alert(JSON.stringify(err));
+            //     //     }
+            //     // });
+            // });
+
+            $('#submit_login').click(function () {
+                var email = $('#email').val();   
+                var pwd = btoa($('#pwd').val()); // btoa is a js method that converts string to base64 encode; atob decodes it
+
+                if (!validateEmail(email)) {
+                    alert('Please enter a valid email address!')
+                } else if (email == '' || pwd == '') {
+                    alert("Please fill in all the fields!");
+                } else {
+                    window.location.href = "index.html";
+                    // $.ajax({
+                    //     url: url + 'Login',
+                    //     data: JSON.stringify({
+                    //         "email": email,
+                    //         "pwd": pwd
+                    //     }),
+                    //     type: 'post',
+                    //     contentType: 'application/json',
+                    //     success: function (response) {
+                    //         if (response == 0) {
+                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
+                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
+                    //         } else if (response == -1) {
+                    //             alert("Error!")
+                    //         } else if (response == 1) {
+                    //             alert("Invalid Email or Password!");
+                    //         }
+                    //     },
+                    //     error: function (err) {                 
+                    //         alert(JSON.stringify(err));
+                    //     }
+                    // });
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="login">
+        <!--login table html-->
+        <h1>Login Form</h1>
+        <form class="login_form">
+            <div class="container">
+                <input type="email" placeholder="Email" id="email" class="login_field" required>
+                <input type="password" placeholder="Password" id="pwd" class="login_field" required>
+                <input type="button" id="submit_login" value="Login">
+                <br />
+                <!-- <div id="forgot_pwd">
+                    Forgot password?
+                </div> -->
+            </div>
+        </form>
+    </div>
+
+    <!-- <table class="table dialog" id="forgot_pwd_dialog" title="Recover Password">
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" id="forgot_email" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input class="btn" type="button" id="forgot_pwd_email" value="Submit" /></td>
+        </tr>
+    </table> -->
+
+    <footer></footer>
+</body>
+</html>
