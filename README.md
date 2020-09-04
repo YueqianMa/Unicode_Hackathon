@@ -1,23 +1,49 @@
 # Unicode_Hackathon
 线上游戏组队平台
 
-线上组队：
-账号
-每个账号
-浏览-自己发的组队消息 (edit, add, delete)
-接收-有人加入发email通知
-主界面
-按游戏 分区显示所有招募信息
-所有的组队邀请
-人数满了或者时间到了就消除？
-搜索
-sort
-每个组队邀请
-时间
-人数
-游戏
-备注
-性别
-联系方式
-加入按钮
-是否interested
+```bash
+░█████╗░  ██████╗░███╗░░░███╗
+██╔══██╗  ██╔══██╗████╗░████║
+╚██████║  ██████╔╝██╔████╔██║
+░╚═══██║  ██╔═══╝░██║╚██╔╝██║
+░█████╔╝  ██║░░░░░██║░╚═╝░██║
+░╚════╝░  ╚═╝░░░░░╚═╝░░░░░╚═╝
+```
+
+Deployed at: 
+
+## Getting Started
+
+In order to work on this project, you should have <br>
+
+1. Git - A version control tool
+2. 
+
+### Prerequisites
+
+Install Git
+```bash
+git --version
+```
+
+
+## Built and hosted With
+
+* [Firebase](https://firebase.google.com/) - Cloud hosting server powered by Google
+
+
+## Contributors
+
+| Contributor   | Email         | Role         |
+| ------------- | ------------- |------------- |
+| Fengyuan Wu   | fwu@ucsd.edu  | Backend Developer       |
+| Zhenyi Xu     | zhx008@ucsd.edu     | Developer                           |
+| Weiyi Zhu     | wzhu1@swarthmore.edu     | Developer                       |
+| Yueqian Ma    | yum001@ucsd.edu     | Front-end Developer                          |
+
+
+
+## Acknowledgments
+
+<br>
+
