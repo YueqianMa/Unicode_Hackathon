@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--<script src="jquery-3.5.1.js"></script>-->
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="loginStyle.css" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" />
     <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
@@ -74,7 +74,7 @@
                 } else if (email == '' || pwd == '') {
                     alert("Please fill in all the fields!");
                 } else {
-                    window.location.href = "index.html";
+                    window.location.href = "personal.html";
                     // $.ajax({
                     //     url: url + 'Login',
                     //     data: JSON.stringify({
@@ -106,7 +106,7 @@
 <body>
     <div class="login">
         <!--login table html-->
-        <h1>Login Form</h1>
+        <h1>登陆&nbsp;Login</h1>
         <form class="login_form">
             <div class="container">
                 <input type="email" placeholder="Email" id="email" class="login_field" required>
