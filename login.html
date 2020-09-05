@@ -151,23 +151,67 @@
                 <div class="container">
                 <div class="row">
                     <div class="col-md-9 col-lg-8 mx-auto">
-                    <h3 class="login-heading mb-4">Welcome back!</h3>
+                    <h3 class="login-heading mb-4" id="oldUserWelcome" style="display: block;">欢迎回来！</h3>
+                    <h3 class="login-heading mb-4" id="newUserWelcome" style="display: none;">新用户注册</h3>
                     <form>
                         <div class="form-label-group">
                         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                        <label for="inputEmail">Email address</label>
+                        <label for="inputEmail">邮箱</label>
                         </div>
         
                         <div class="form-label-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                        <label for="inputPassword">Password</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">密码</label>
+                        </div>
+
+                        <div class="form-label-group" id="repeatPassword" style="display: none;">
+                            <input type="password" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">重复密码</label>
                         </div>
         
                         <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">New user|click here to register</label>
+                            <input type="checkbox" class="custom-control-input" id="newUser" onclick="show()">
+                            <label class="custom-control-label" for="newUser">New user|click here to register</label>
                         </div>
+
+                    
+  
+                        <script> 
+                            function addCode() { 
+                                document.getElementById("add_to_me").innerHTML +=  
+                                "<h3 id=\"repeat\">This is the text which has been inserted by JS</h3>"; 
+                            } 
+        
+
+                            function show() {
+                                var x = document.getElementById('repeatPassword');
+                                var y = document.getElementById('newUserWelcome'); 
+                                var z = document.getElementById('oldUserWelcome'); 
+
+                                if (x.style.display === "none") {
+                                    x.style.display = "block";
+                                } else {
+                                    x.style.display = "none";
+                                }
+                                if (y.style.display === "none") {
+                                    y.style.display = "block";
+                                } else {
+                                    y.style.display = "none";
+                                }
+
+                                if (z.style.display === "none") {
+                                    z.style.display = "block";
+                                } else {
+                                    z.style.display = "none";
+                                }
+                            }
+                        </script> 
+
+
+
+
                         <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign Up</button>
                         <div class="text-center">
                         <a class="small" href="#">Forgot password?</a></div>
                     </form>
