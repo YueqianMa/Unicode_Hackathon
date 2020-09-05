@@ -86,3 +86,34 @@ body {
     font-family: "Open Sans", sans-serif;
 }
 /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.table td, .table th {
+  padding: 8px;
+} 
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.highlight tr:hover {background-color:#F8F8F8;}
+
+.highlight td, .highlight th {
+    text-align: center;
+}
+
+.btn {padding:5px 15px; background:#F0F0F0; border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.align_right {
+  text-align:right;
+}
