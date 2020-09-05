@@ -29,6 +29,8 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+<<<<<<< HEAD:login.html
+=======
 
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
@@ -117,6 +119,7 @@
             });
         })
     </script>
+>>>>>>> 65e91062fd4baefdbda57c98a00da9e027864dc6:public/loginTest.html
 </head>
 
 <body class="gradiantBg">
@@ -291,6 +294,84 @@
                         <div class="text-center">
                         <a class="small" target="_blank" href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">忘记密码?</a></div>
                     </form>
+
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            function validateEmail($email) {
+                                // check if email is valid
+                                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                                return emailReg.test($email);
+                            }
+
+                            
+                            
+                
+                            $('#signInButton').click(function () {
+                                var email = $('#inputEmail').val();   
+                                var pwd = $('#inputPassword').val();
+                                if (email == '' || pwd == '') {
+                                    alert("Please fill in all the fields!");
+                                } else if (!validateEmail(email)) {
+                                    alert('Please enter a valid email address!')
+                                } else {
+                                    alert(email)
+                                    alert(pwd)
+                                    //window.location.href = "personal.html";
+                                    
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'get',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                            });
+
+                            $('#signUpButton').click(function () {
+                                var email = $('#inputEmail').val();   
+                                var pwd = $('#inputPassword').val();
+                                var confirmPwd = $('#repeatPassword').val();
+                                if (email == '' || pwd == '' || confirmPwd == '') {
+                                    alert("Please fill in all the fields!");
+                                } else if (!validateEmail(email)) {
+                                    alert('Please enter a valid email address!')
+                                } else if (pwd !== confirmPwd) {
+                                    alert("密码不一致!")
+                                } else {
+                                    alert(email)
+                                    alert(pwd)
+                                    alert(confirmPwd)
+                                    //window.location.href = "personal.html";
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'post',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                            });
+                        })
+                    </script>
                     </div>
                 </div>
                 </div>
