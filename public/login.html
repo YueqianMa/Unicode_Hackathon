@@ -29,94 +29,6 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            function validateEmail($email) {
-                // check if email is valid
-                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                return emailReg.test($email);
-            }
-
-            // $('.dialog').dialog({
-            //     // jQuery UI dialog property settings
-            //     draggable: false,
-            //     resizable: false,
-            //     modal: true,
-            //     autoOpen: false,
-            //     position: { my: 'top', at: 'top+150' },
-            //     width: 'auto',
-            // });
-
-            // $('#forgot_pwd').click(function () {
-            //     $('#forgot_email').val($('#email').val());
-            //     $('#forgot_pwd_dialog').dialog('open');
-            // })
-
-            // $('#forgot_pwd_email').click(function () {
-            //     var email = $('#forgot_email').val();
-            //     // $.ajax({
-            //     //     url: url + 'forgotStaff', // url read from web.config.js file 
-            //     //     method: 'post',
-            //     //     data: JSON.stringify({
-            //     //         'email': email,
-            //     //     }),
-            //     //     contentType: "application/json; charset=utf-8",
-            //     //     success: function (response) {
-            //     //         if (response == 0) {
-            //     //             alert("We just sent you a temporary password, please check your mailbox!");
-            //     //             $('#forgot_pwd_dialog').dialog('close');
-            //     //         } else if (response == 1) {
-            //     //             alert("This user doesn't exist in our database.");
-            //     //         } else if (response == -1) {
-            //     //             alert("Error!")
-            //     //         }
-            //     //     },
-            //     //     error: function (err) {
-            //     //         alert(JSON.stringify(err));
-            //     //     }
-            //     // });
-            // });
-
-            $('#submit_login').click(function () {
-                var email = $('#email').val();   
-                var pwd = btoa($('#pwd').val()); // btoa is a js method that converts string to base64 encode; atob decodes it
-
-                if (!validateEmail(email)) {
-                    alert('Please enter a valid email address!')
-                } else if (email == '' || pwd == '') {
-                    alert("Please fill in all the fields!");
-                } else {
-                    window.location.href = "personal.html";
-                    // $.ajax({
-                    //     url: url + 'Login',
-                    //     data: JSON.stringify({
-                    //         "email": email,
-                    //         "pwd": pwd
-                    //     }),
-                    //     type: 'post',
-                    //     contentType: 'application/json',
-                    //     success: function (response) {
-                    //         if (response == 0) {
-                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
-                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
-                    //         } else if (response == -1) {
-                    //             alert("Error!")
-                    //         } else if (response == 1) {
-                    //             alert("Invalid Email or Password!");
-                    //         }
-                    //     },
-                    //     error: function (err) {                 
-                    //         alert(JSON.stringify(err));
-                    //     }
-                    // });
-                }
-            });
-        })
-    </script>
 </head>
 
 <body class="gradiantBg">
@@ -237,26 +149,91 @@
                                     v.style.display = "none";
                                 }
                             }
-
-                            // Initialize the FirebaseUI Widget using Firebase.
-                            var ui = new firebaseui.auth.AuthUI(firebase.auth());
                         </script> 
 
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;" onclick="Swal.fire({
-                            icon: 'error',
-                            title: '登陆失败',
-                            text: '服务器繁忙, 请稍后再试',
-                            
-                          })">登陆账号</button>
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;" onclick="Swal.fire({
-                            icon: 'error',
-                            title: '注册失败 :(',
-                            text: '服务器开小差啦, 紧急修复ing...',
-                            
-                          })">注册新账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;">登陆账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;">注册新账号</button>
                         <div class="text-center">
                         <a class="small" target="_blank" href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">忘记密码?</a></div>
                     </form>
+
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            function validateEmail($email) {
+                                // check if email is valid
+                                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                                return emailReg.test($email);
+                            }
+
+                            
+                            
+                
+                            $('#signInButton').click(function () {
+                                var email = $('#inputEmail').val();   
+                                var pwd = $('#inputPassword').val();
+                                if (email == '' || pwd == '') {
+                                    alert("Please fill in all the fields!");
+                                } else if (!validateEmail(email)) {
+                                    alert('Please enter a valid email address!')
+                                } else {
+                                    alert(email)
+                                    alert(pwd)
+                                    //window.location.href = "personal.html";
+                                    
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'get',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                            });
+
+                            $('#signUpButton').click(function () {
+                                var email = $('#inputEmail').val();   
+                                var pwd = $('#inputPassword').val();
+                                var confirmPwd = $('#repeatPassword').val();
+                                if (email == '' || pwd == '' || confirmPwd == '') {
+                                    alert("Please fill in all the fields!");
+                                } else if (!validateEmail(email)) {
+                                    alert('Please enter a valid email address!')
+                                } else if (pwd !== confirmPwd) {
+                                    alert("密码不一致!")
+                                } else {
+                                    alert(email)
+                                    alert(pwd)
+                                    alert(confirmPwd)
+                                    //window.location.href = "personal.html";
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'post',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
+                                }
+                            });
+                        })
+                    </script>
                     </div>
                 </div>
                 </div>
@@ -362,9 +339,6 @@
             }
         </script>
 
-        <!-- 好看的alart -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
         
     </body>
 </html>
