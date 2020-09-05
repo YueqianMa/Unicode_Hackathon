@@ -30,6 +30,9 @@
     <link href="assets/css/style.css" rel="stylesheet">
 
 
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
     <script type="text/javascript">
         $(document).ready(function () {
             function validateEmail($email) {
@@ -234,6 +237,9 @@
                                     v.style.display = "none";
                                 }
                             }
+
+                            // Initialize the FirebaseUI Widget using Firebase.
+                            var ui = new firebaseui.auth.AuthUI(firebase.auth());
                         </script> 
 
                         <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;">登陆账号</button>
