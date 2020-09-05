@@ -242,8 +242,18 @@
                             var ui = new firebaseui.auth.AuthUI(firebase.auth());
                         </script> 
 
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;">登陆账号</button>
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;">注册新账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;" onclick="Swal.fire({
+                            icon: 'error',
+                            title: '登陆失败',
+                            text: '服务器繁忙, 请稍后再试',
+                            
+                          })">登陆账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;" onclick="Swal.fire({
+                            icon: 'error',
+                            title: '注册失败 :(',
+                            text: '服务器开小差啦, 紧急修复ing...',
+                            
+                          })">注册新账号</button>
                         <div class="text-center">
                         <a class="small" target="_blank" href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">忘记密码?</a></div>
                     </form>
@@ -352,6 +362,9 @@
             }
         </script>
 
+        <!-- 好看的alart -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
         
     </body>
 </html>
