@@ -137,7 +137,8 @@
               <li><a href="index.html#team">热力榜</a></li>
               <li><a href="index.html#faq">FAQ</a></li>
               <li><a href="personal.html">我的 My Teams</a></li>
-              <li class="active"><a href="login.html">登陆login/登出logout</a></li>
+              <li><a href="login.html">登陆login/登出logout</a></li>
+              <li class="active"><a href="loginTest.html">登陆测试版</a></li>
             </ul>
           </nav><!-- .nav-menu -->
         </div>
@@ -240,20 +241,53 @@
 
                             // Initialize the FirebaseUI Widget using Firebase.
                             var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+
+                            var uiConfig = {
+                                callbacks: {
+                                    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                                    // User successfully signed in.
+                                    // Return type determines whether we continue the redirect automatically
+                                    // or whether we leave that to developer to handle.
+                                    return true;
+                                    },
+                                    uiShown: function() {
+                                    // The widget is rendered.
+                                    // Hide the loader.
+                                    document.getElementById('loader').style.display = 'none';
+                                    }
+                                },
+                                // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+                                signInFlow: 'popup',
+                                signInSuccessUrl: '<url-to-redirect-to-on-success>',
+                                signInOptions: [
+                                    // Leave the lines as is for the providers you want to offer your users.
+                                    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                                    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                                    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                                    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                                    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                                    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+                                ],
+                                // Terms of service url.
+                                tosUrl: '<your-tos-url>',
+                                // Privacy policy url.
+                                privacyPolicyUrl: '<your-privacy-policy-url>'
+                                };
+
+                                // The start method will wait until the DOM is loaded.
+                                ui.start('#firebaseui-auth-container', uiConfig);
+
+                                ui.start('#firebaseui-auth-container', {
+                                    signInOptions: [
+                                        firebase.auth.EmailAuthProvider.google.com
+                                    ],
+                                    // Other config options...
+                                });
                         </script> 
 
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;" onclick="Swal.fire({
-                            icon: 'error',
-                            title: '登陆失败',
-                            text: '服务器繁忙, 请稍后再试',
-                            
-                          })">登陆账号</button>
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;" onclick="Swal.fire({
-                            icon: 'error',
-                            title: '注册失败 :(',
-                            text: '服务器开小差啦, 紧急修复ing...',
-                            
-                          })">注册新账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signInButton" style="display: block;">登陆账号</button>
+                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="signUpButton" style="display: none; background-color: #6ca849; border-color: #286202;">注册新账号</button>
                         <div class="text-center">
                         <a class="small" target="_blank" href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">忘记密码?</a></div>
                     </form>
@@ -265,35 +299,11 @@
         </div>
     </div>
 
-
-<!-- Weiyi Zhu login table html -->
-    <!-- <div class="login">
-        
-        <h1>登陆&nbsp;Login</h1>
-        <form class="login_form">
-            <div class="container">
-                <input type="email" placeholder="Email" id="email" class="login_field" required>
-                <input type="password" placeholder="Password" id="pwd" class="login_field" required>
-                <input type="button" id="submit_login" value="Login">
-                <br />
-                <div id="forgot_pwd">
-                    <a href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">Forgot password?</a>
-                </div>
-            </div>
-        </form>
-    </div> -->
-
-    <!-- <table class="table dialog" id="forgot_pwd_dialog" title="Recover Password">
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" id="forgot_email" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input class="btn" type="button" id="forgot_pwd_email" value="Submit" /></td>
-        </tr>
-    </table>
-
-    <script>for(var x=0;x<=3;x++){document.write("<br>")}</script>-->
+<!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+     <h1>Welcome to My Awesome App</h1>
+     <div id="firebaseui-auth-container"></div>
+     <div id="loader">Loading...</div>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -362,9 +372,6 @@
             }
         </script>
 
-        <!-- 好看的alart -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
         
     </body>
 </html>
