@@ -234,3 +234,15 @@ body.gradiantBg{
 		background-position: 0% 50%;
 	}
 }
+
+table {
+  border-collapse: collapse;
+}
+table td, table th {
+  padding: 8px;
+} 
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

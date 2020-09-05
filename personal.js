@@ -5,20 +5,16 @@ $(document).ready(function () {
             "date": "2012-04-23",
             "time": "13:30",
             "game": "game1",
-            "member1": "member1",
-            "member2": "member2",
-            "member3": "member3",
-            "member4": "member4",
+            "members": "member1, member2, member3, member4",
+            "host": "richard"
         },
         {
             "room_id": 2,
-            "date": "2021-02-01",
-            "time": "14:30",
+            "date": "2012-04-23",
+            "time": "13:30",
             "game": "game2",
-            "member1": "member1",
-            "member2": "member2",
-            "member3": "member3",
-            "member4": "",
+            "members": "member5, member6, member7",
+            "host": "richard2"
         }
     ]
 
@@ -52,7 +48,6 @@ $(document).ready(function () {
 
     $(document).ready(function() {
         getMyTeam();
-        getInterestedTeam();
         getJoinedTeam();
     })
 
@@ -66,10 +61,11 @@ $(document).ready(function () {
                         + "<td class='date'>" + element.date + '</td>'
                         + "<td class='time'>" + element.time + '</td>'
                         + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
+                        + "<td class='member'>" + element.member1 + '</td>'
                         + "<td class='member2'>" + element.member2 + '</td>'
                         + "<td class='member3'>" + element.member3 + '</td>'
                         + "<td class='member4'>" + element.member4 + '</td>'
+                        + "<td><input type='button' class='edit_members btn' value='Members' /></td>"
                         + "<td><input type='button' class='edit_myTeam btn' value='Edit' /></td>"
                         + "<td><input type='button' class='delete_myTeam btn' value='Delete' /></td>"
                         + "</tr>")
@@ -81,7 +77,7 @@ $(document).ready(function () {
                     "bLengthChange": false,
                 });
         // $.ajax({
-        //     url: url + 'getMyTeam',
+        //     url: localhost,
         //     dataType: 'json',
         //     method: 'post',
         //     data: JSON.stringify({
@@ -108,66 +104,6 @@ $(document).ready(function () {
         //                 + "</tr>")
         //         });
         //         $('#myTeam').DataTable({
-        //             paging: true,
-        //             stripeClasses: [],
-        //             autoWidth: false
-        //         });
-        //     },
-        //     error: function (err) {
-        //         alert(JSON.stringify(err));
-        //     }
-        // });
-    };
-
-    function getInterestedTeam() {
-        var displaytable = $('#interestedTeam tbody');
-                displaytable.empty();
-                $(interested_joined_data).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='date'>" + element.date + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='host'>" + element.host + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td><input type='button' class='delete_interestedTeam btn' value='Delete' /></td>"
-                        + "</tr>")
-                });
-                $('#interestedTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                    "bLengthChange": false,
-                });
-        // $.ajax({
-        //     url: url + 'getInterestedTeam',
-        //     dataType: 'json',
-        //     method: 'post',
-        //     data: JSON.stringify({
-        //         email: sessionStorage.getItem('email')
-        //     }),
-        //     success: function (data) {
-        //         if (data == "-1") {
-        //             alert("Error!");
-        //         }
-        //         var parsed = JSON.parse(data);
-        //         var displaytable = $('#interestedTeam tbody');
-        //         displaytable.empty();
-        //         $(parsed).each(function (index, element) {
-        //             displaytable.append("<tr>"
-        //                 + "<td class='room_id'>" + element.room_id + '</td>'
-        //                 + "<td class='time'>" + element.time + '</td>'
-        //                 + "<td class='game'>" + element.game + '</td>'
-        //                 + "<td class='host'>" + element.host + '</td>'
-        //                 + "<td class='member1'>" + element.member1 + '</td>'
-        //                 + "<td class='member2'>" + element.member2 + '</td>'
-        //                 + "<td class='member3'>" + element.member3 + '</td>'
-        //                 + "<td><input type='button' class='delete_interested btn' value='Delete' /></td>"
-        //                 + "</tr>")
-        //         });
-        //         $('#interestedTeam').DataTable({
         //             paging: true,
         //             stripeClasses: [],
         //             autoWidth: false
@@ -410,51 +346,9 @@ $(document).ready(function () {
     $('.no').click(function () {
         // when click on no on delete dialog 
         $('#delete_myTeam_dialog').dialog('close');
-        $('#delete_interestedTeam_dialog').dialog('close');
     });
 
-    $(document).on('click', '.delete_interestedTeam', function () {
-        // when click on delete btn 
-        current_room_id = $(this).closest('tr').children('td.room_id').text();
-        current_date = $(this).closest('tr').children('td.date').text();
-        current_time = $(this).closest('tr').children('td.time').text();
-        current_game = $(this).closest('tr').children('td.game').text();
-        $('#delete_room_id_int').html(current_room_id);
-        $('#delete_date_int').html(current_date);
-        $('#delete_time_int').html(current_time);
-        $('#delete_game_int').html(current_game);
-
-        $('#delete_interestedTeam_dialog').dialog('open');
-    });
-
-    $('#yes_interestedTeam').click(function () {
-        // when click on yes on delete dialog 
-        alert("some ajax");
-        // $.ajax({
-        //     url: url + 'deleteReport',
-        //     method: 'delete',
-        //     data: JSON.stringify({
-        //         'room_id': current_room_id,
-        //         'email': sessionStorage.getItem('email')
-        //     }),
-        //     contentType: "application/json; charset=utf-8",
-        //     success: function (response) {
-        //         if (response == 0) {
-        //             alert("Success!")
-        //             location.reload();
-        //         } else if (response == -1) {
-        //             alert("Error!");
-        //         } else {
-        //             alert("Failed! This report is assigned to one or more customers!");
-        //         }
-        //     },
-        //     error: function (err) {
-        //         alert(JSON.stringify(err));
-        //     }
-        // });
-        $('#delete_interestedTeam_dialog').dialog('close');
-    });
-
+    
     $(document).on('click', '.leave_joinedTeam', function () {
         // when click on delete btn 
         current_room_id = $(this).closest('tr').children('td.room_id').text();

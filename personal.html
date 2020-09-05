@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="widtd=device-widtd, initial-scale=1.0" name="viewport">
 
   <title>9PM游戏组队 | 我的组队</title>
   <meta content="游戏组队" name="keywords">
@@ -28,7 +28,7 @@
   <!-- =======================================================
   * Template Name: Flexor - v2.2.0
   * Template URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
+  * Autdor: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
   
@@ -56,7 +56,8 @@
   <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/tdemes/base/jquery-ui.css"> -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
   <script src="personal.js"></script>
 
@@ -95,73 +96,67 @@
   <main id="myTeams" class="container">
     <div id="tabs">
         <ul>
+            <li><a href="#personalTab">My Account</a></li>
             <li><a href="#myTeamTab">My Team</a></li>
-            <li><a href="#interestedTeamTab">Interested Team</a></li>
             <li><a href="#joinedTeamTab">Joined Team</a></li>
-          </ul>
+        </ul>
+          <div id="personalTab">
+            <table id="personalInfo">
+              <tr>
+                <td sytle="text-align:right">Email</td>
+                <td><input type="email" id="personalEmail"></td>
+              </tr>
+              <tr>
+                <td sytle="text-align:right">Username</td>
+                <td><input type="text" id="personalUsername"></td>
+              </tr>
+              <tr sytle="text-align:right">
+                <td colspan="2"><input type="button" class="btn" id="edit_personalInfo" value="Edit" /></td>
+              </tr>
+            </table>
+          </div>
           <div id="myTeamTab">
             <hr />
             <h2><center><strong>My Team</strong></center></h2>
             <!-- <br /> -->
             <table class="table highlight" id="myTeam">
-                <thead>
+                <tdead>
                     <tr>
-                        <th>Room ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Game</th>
-                        <th>Member 1</th> 
-                        <th>Member 2</th>
-                        <th>Member 3</th>
-                        <th>Member 4</th>
-                        <th></th>
-                        <th></th>
-                        <!-- <th></th> -->
+                        <td>Room ID</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Game</td>
+                        <td>Member 1</td> 
+                        <td>Member 2</td>
+                        <td>Member 3</td>
+                        <td>Member 4</td>
+                        <td></td>
+                        <td></td>
+                        <!-- <td></td> -->
                     </tr>
-                </thead>
+                </tdead>
                 <tbody></tbody>
             </table>
             <br />
-          </div>
-          <div id="interestedTeamTab">
-            <hr />
-            <h2><center><strong>Interested Team</strong></center></h2>
-            <table class="table highlight" id="interestedTeam">
-                <thead>
-                    <tr>
-                        <th>Room ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Game</th>
-                        <th>Host</th> 
-                        <th>Member 1</th>
-                        <th>Member 2</th>
-                        <th>Member 3</th>
-                        <th></th>
-                        <!-- <th></th> -->
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
           </div>
           <div id="joinedTeamTab">
             <hr />
             <h2><center><strong>Joined Team</strong></center></h2>
             <table class="table highlight" id="joinedTeam">
-                <thead>
+                <tdead>
                     <tr>
-                        <th>Room ID</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Game</th>
-                        <th>Host</th> 
-                        <th>Member 1</th>
-                        <th>Member 2</th>
-                        <th>Member 3</th>
-                        <th></th>
-                        <!-- <th></th> -->
+                        <td>Room ID</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td>Game</td>
+                        <td>Host</td> 
+                        <td>Member 1</td>
+                        <td>Member 2</td>
+                        <td>Member 3</td>
+                        <td></td>
+                        <!-- <td></td> -->
                     </tr>
-                </thead>
+                </tdead>
                 <tbody></tbody>
             </table>
           </div>
@@ -209,6 +204,29 @@
         </tr>
     </table>
 
+    <!--edit myTeam member dialog-->
+    <table class="table dialog align_right" id="edit_myTeam_dialog" title="Edit Report Info">
+      <tr>
+          <td>Member 1:</td>
+          <td><input type="text" id="edit_member1" /></td>
+      </tr>
+      <tr>
+          <td>Member 2:</td>
+          <td><input type="text" id="edit_member2" /></td>
+      </tr>        
+      <tr>
+          <td>Member 3:</td>
+          <td><input type="text" id="edit_member3" /></td>
+      </tr>        
+      <tr>
+          <td>Member 4:</td>
+          <td><input type="text" id="edit_member4" /></td>
+      </tr>
+      <tr>
+          <td colspan="2"><input type="submit" id="edit_myTeam_btn" class="btn" value="Submit" /></td>
+      </tr>
+  </table>
+
     <!--delete myTeam dialog-->
     <div class="dialog" id="delete_myTeam_dialog" title="Are you sure?">
         <table class="table">
@@ -237,33 +255,7 @@
         </center>
     </div>
 
-        <!--delete interestedTeam dialog-->
-        <div class="dialog" id="delete_interestedTeam_dialog" title="Are you sure?">
-            <table class="table">
-                <tr>
-                    <td>Room ID:</td>
-                    <td id="delete_room_id_int"></td>
-                </tr>
-                <tr>
-                    <td>Date:</td>
-                    <td id="delete_date_int"></td>
-                </tr>
-                <tr>
-                    <td>Time:</td>
-                    <td id="delete_time_int"></td>
-                </tr>
-                <tr>
-                    <td>Game:</td>
-                    <td id="delete_game_int"></td>
-                </tr>
-            </table>
-            <br />
-            <center>
-                <input type="button" id="yes_interestedTeam" class="btn" value="Yes" />
-                &nbsp;&nbsp;&nbsp;
-                <input type="button" class="no btn" value="No" />
-            </center>
-        </div>
+        
 
         <!--leave joinedTeam dialog-->
         <div class="dialog" id="leave_joinedTeam_dialog" title="Are you sure?">
@@ -366,8 +358,8 @@
             <div id="homepage_footer_widget_mail" class="homepage_footer_widgets">
             </div>
           </div>
-          <div class="homepage_footer_icons github_black_icon" onclick="window.open ('https://github.com/YueqianMa/Unicode_Hackathon')">
-            <div id="homepage_footer_widget_github" class="homepage_footer_widgets">
+          <div class="homepage_footer_icons gitdub_black_icon" onclick="window.open ('https://gitdub.com/YueqianMa/Unicode_Hackatdon')">
+            <div id="homepage_footer_widget_gitdub" class="homepage_footer_widgets">
             </div>
           </div>
   
@@ -394,7 +386,7 @@
             Copyright &copy; <script>document.write(new Date().getFullYear());</script> <strong>9PM</strong> All rights reserved.
           </div>
           <div style="opacity: 0.3;" >
-              This template is made with ❤ by <a href="https://bootstrapmade.com/" target="_blank" class="text-primary">BootstrapMade</a>
+              tdis template is made witd ❤ by <a href="https://bootstrapmade.com/" target="_blank" class="text-primary">BootstrapMade</a>
           </div>
         </div>
       </div>

@@ -179,28 +179,23 @@
                                     alert(email)
                                     alert(pwd)
                                     //window.location.href = "personal.html";
-                                    // $.ajax({
-                                    //     url: url + 'Login',
-                                    //     data: JSON.stringify({
-                                    //         "email": email,
-                                    //         "pwd": pwd
-                                    //     }),
-                                    //     type: 'post',
-                                    //     contentType: 'application/json',
-                                    //     success: function (response) {
-                                    //         if (response == 0) {
-                                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
-                                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
-                                    //         } else if (response == -1) {
-                                    //             alert("Error!")
-                                    //         } else if (response == 1) {
-                                    //             alert("Invalid Email or Password!");
-                                    //         }
-                                    //     },
-                                    //     error: function (err) {                 
-                                    //         alert(JSON.stringify(err));
-                                    //     }
-                                    // });
+                                    
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'get',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
                                 }
                             });
 
@@ -219,28 +214,22 @@
                                     alert(pwd)
                                     alert(confirmPwd)
                                     //window.location.href = "personal.html";
-                                    // $.ajax({
-                                    //     url: url + 'Login',
-                                    //     data: JSON.stringify({
-                                    //         "email": email,
-                                    //         "pwd": pwd
-                                    //     }),
-                                    //     type: 'post',
-                                    //     contentType: 'application/json',
-                                    //     success: function (response) {
-                                    //         if (response == 0) {
-                                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
-                                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
-                                    //         } else if (response == -1) {
-                                    //             alert("Error!")
-                                    //         } else if (response == 1) {
-                                    //             alert("Invalid Email or Password!");
-                                    //         }
-                                    //     },
-                                    //     error: function (err) {                 
-                                    //         alert(JSON.stringify(err));
-                                    //     }
-                                    // });
+                                    $.ajax({
+                                        url: '',
+                                        data: JSON.stringify({
+                                            "email": email,
+                                            "pwd": pwd
+                                        }),
+                                        type: 'post',
+                                        contentType: 'application/json',
+                                        success: function (response) {
+                                            alert(response);
+                                            window.location.href = "personal.html";
+                                        },
+                                        error: function (err) {                 
+                                            alert(JSON.stringify(err));
+                                        }
+                                    });
                                 }
                             });
                         })
