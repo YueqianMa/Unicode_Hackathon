@@ -2371,3 +2371,207 @@ section {
 #easter_egg3:hover{
   background-position: 0 100%;
 } 
+
+
+/*footer icon代码*/
+#footer_icon_container {
+  height: 70px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  .homepage_footer_widgets {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .homepage_footer_icons {
+    background-color: grey;
+    border-radius: 50%;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+  .homepage_footer_widgets {
+    height: 20px;
+    width: 20px;
+  }
+
+  .homepage_footer_icons {
+    background-color: grey;
+    border-radius: 50%;
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  .navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+    line-height: inherit;
+    white-space: nowrap; }
+    .navbar-brand:hover, .navbar-brand:focus {
+      text-decoration: none; }
+}
+
+
+#wechat {
+  width: 200px;
+  height: 260px;
+  position: absolute;
+  top: -320px;
+  left: -75px;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: -1;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    line-height: inherit;
+    white-space: nowrap; }
+    .navbar-brand:hover, .navbar-brand:focus {
+      text-decoration: none; }
+
+
+  #wechat {
+    width: 140px;
+    height: 180px;
+    position: absolute;
+    top: -210px;
+    left: -45px;
+    opacity: 0;
+    transition: 0.5s ease;
+    z-index: -1;
+  }
+}
+
+
+
+  .homepage_footer_widgets {
+    height: 30px;
+    width: 30px;
+  }
+
+ .homepage_footer_icons {
+   background-color: grey;
+   border-radius: 50%;
+   float: left;
+   margin-top: 20px;
+   margin-left: 10px;
+   margin-right: 10px;
+   padding: 10px;
+   transition: transform 0.4s;
+   /* transition-property: all;
+   transition-duration: 0.5s;
+   transition-timing-function: ease;
+   transition-delay: 0s; */
+   cursor: pointer;
+ }
+ .homepage_footer_icons:hover {
+   transform: scale(1.2); 
+   cursor: pointer;
+   display: block;
+   background-color: rgb(143, 148, 153); 
+   transition: 0.4s all ease;
+  }
+
+  .green_icon:hover {
+    background-color: rgb(26, 173, 25); 
+    cursor: default;
+
+    /* For Internet Explorer */ 
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, .3); 
+      
+    /* For other browsers */ 
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5); 
+    /* pointer-events: none;  */
+    transition: 0.08s all ease;
+    filter: brightness(100%);
+    
+  }
+
+  .facebook_blue_icon:hover {
+  background-color: rgb(66, 103, 178); 
+  }
+
+  .github_black_icon:hover {
+  background-color: rgb(37, 41, 46); 
+  }
+
+  .ins_pink_icon::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+
+    background-image: linear-gradient(to bottom left, rgb(110, 26, 199), rgb(241, 81, 67), rgb(255, 251, 1) );
+
+    transition: opacity 1s ease-in-out !important;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .ins_pink_icon:hover {
+    background-image: linear-gradient(to top left, rgb(110, 26, 199), rgb(241, 81, 67), rgb(255, 251, 1) );
+    transition: .3s all ease;
+  }
+
+  .ins_pink_icon:hover::before{
+    opacity: 1;
+  }
+
+
+ #homepage_footer_widget_mail {
+   background-image: url("../../images/email_white.png");
+   background-size: cover;
+ }
+ #homepage_footer_widget_github {
+  background-image: url("../../images/github2.png");
+  background-size: cover;
+ }
+
+ #homepage_footer_widget_facebook {
+  background-image: url("../../images/facebook2.png");
+  background-size: cover;
+}
+
+#homepage_footer_widget_wechat {
+  background-image: url("../../images/wechat.png");
+  background-size: cover;
+}
+
+#homepage_footer_widget_instagram {
+  background-image: url("../../images/instagram5.png");
+  background-size: cover;
+  z-index: 1;
+}
