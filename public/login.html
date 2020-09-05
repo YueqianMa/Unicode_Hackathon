@@ -29,6 +29,91 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function validateEmail($email) {
+                // check if email is valid
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                return emailReg.test($email);
+            }
+
+            // $('.dialog').dialog({
+            //     // jQuery UI dialog property settings
+            //     draggable: false,
+            //     resizable: false,
+            //     modal: true,
+            //     autoOpen: false,
+            //     position: { my: 'top', at: 'top+150' },
+            //     width: 'auto',
+            // });
+
+            // $('#forgot_pwd').click(function () {
+            //     $('#forgot_email').val($('#email').val());
+            //     $('#forgot_pwd_dialog').dialog('open');
+            // })
+
+            // $('#forgot_pwd_email').click(function () {
+            //     var email = $('#forgot_email').val();
+            //     // $.ajax({
+            //     //     url: url + 'forgotStaff', // url read from web.config.js file 
+            //     //     method: 'post',
+            //     //     data: JSON.stringify({
+            //     //         'email': email,
+            //     //     }),
+            //     //     contentType: "application/json; charset=utf-8",
+            //     //     success: function (response) {
+            //     //         if (response == 0) {
+            //     //             alert("We just sent you a temporary password, please check your mailbox!");
+            //     //             $('#forgot_pwd_dialog').dialog('close');
+            //     //         } else if (response == 1) {
+            //     //             alert("This user doesn't exist in our database.");
+            //     //         } else if (response == -1) {
+            //     //             alert("Error!")
+            //     //         }
+            //     //     },
+            //     //     error: function (err) {
+            //     //         alert(JSON.stringify(err));
+            //     //     }
+            //     // });
+            // });
+
+            $('#submit_login').click(function () {
+                var email = $('#email').val();   
+                var pwd = btoa($('#pwd').val()); // btoa is a js method that converts string to base64 encode; atob decodes it
+
+                if (!validateEmail(email)) {
+                    alert('Please enter a valid email address!')
+                } else if (email == '' || pwd == '') {
+                    alert("Please fill in all the fields!");
+                } else {
+                    window.location.href = "personal.html";
+                    // $.ajax({
+                    //     url: url + 'Login',
+                    //     data: JSON.stringify({
+                    //         "email": email,
+                    //         "pwd": pwd
+                    //     }),
+                    //     type: 'post',
+                    //     contentType: 'application/json',
+                    //     success: function (response) {
+                    //         if (response == 0) {
+                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
+                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
+                    //         } else if (response == -1) {
+                    //             alert("Error!")
+                    //         } else if (response == 1) {
+                    //             alert("Invalid Email or Password!");
+                    //         }
+                    //     },
+                    //     error: function (err) {                 
+                    //         alert(JSON.stringify(err));
+                    //     }
+                    // });
+                }
+            });
+        })
+    </script>
 </head>
 
 <body class="gradiantBg">
@@ -156,95 +241,6 @@
                         <div class="text-center">
                         <a class="small" target="_blank" href="https://memegenerator.net/instance/64577703/willy-wonka-tell-me-again-how-you-forgot-your-password">忘记密码?</a></div>
                     </form>
-
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            function validateEmail($email) {
-                                // check if email is valid
-                                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                                return emailReg.test($email);
-                            }
-
-                            
-                            
-                
-                            $('#signInButton').click(function () {
-                                var email = $('#inputEmail').val();   
-                                var pwd = $('#inputPassword').val();
-                                if (email == '' || pwd == '') {
-                                    alert("Please fill in all the fields!");
-                                } else if (!validateEmail(email)) {
-                                    alert('Please enter a valid email address!')
-                                } else {
-                                    alert(email)
-                                    alert(pwd)
-                                    //window.location.href = "personal.html";
-                                    // $.ajax({
-                                    //     url: url + 'Login',
-                                    //     data: JSON.stringify({
-                                    //         "email": email,
-                                    //         "pwd": pwd
-                                    //     }),
-                                    //     type: 'post',
-                                    //     contentType: 'application/json',
-                                    //     success: function (response) {
-                                    //         if (response == 0) {
-                                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
-                                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
-                                    //         } else if (response == -1) {
-                                    //             alert("Error!")
-                                    //         } else if (response == 1) {
-                                    //             alert("Invalid Email or Password!");
-                                    //         }
-                                    //     },
-                                    //     error: function (err) {                 
-                                    //         alert(JSON.stringify(err));
-                                    //     }
-                                    // });
-                                }
-                            });
-
-                            $('#signUpButton').click(function () {
-                                var email = $('#inputEmail').val();   
-                                var pwd = $('#inputPassword').val();
-                                var confirmPwd = $('#repeatPassword').val();
-                                if (email == '' || pwd == '' || confirmPwd == '') {
-                                    alert("Please fill in all the fields!");
-                                } else if (!validateEmail(email)) {
-                                    alert('Please enter a valid email address!')
-                                } else if (pwd !== confirmPwd) {
-                                    alert("密码不一致!")
-                                } else {
-                                    alert(email)
-                                    alert(pwd)
-                                    alert(confirmPwd)
-                                    //window.location.href = "personal.html";
-                                    // $.ajax({
-                                    //     url: url + 'Login',
-                                    //     data: JSON.stringify({
-                                    //         "email": email,
-                                    //         "pwd": pwd
-                                    //     }),
-                                    //     type: 'post',
-                                    //     contentType: 'application/json',
-                                    //     success: function (response) {
-                                    //         if (response == 0) {
-                                    //             sessionStorage.setItem('email', email); // if success, store email in sessionStorage
-                                    //             window.location.href = "index.html";  // if success, redirect to the Home.html page
-                                    //         } else if (response == -1) {
-                                    //             alert("Error!")
-                                    //         } else if (response == 1) {
-                                    //             alert("Invalid Email or Password!");
-                                    //         }
-                                    //     },
-                                    //     error: function (err) {                 
-                                    //         alert(JSON.stringify(err));
-                                    //     }
-                                    // });
-                                }
-                            });
-                        })
-                    </script>
                     </div>
                 </div>
                 </div>
