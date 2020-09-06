@@ -1,12 +1,11 @@
-/* .table {
+#personalInfo {
     border-collapse: collapse;
-    width: 100%;
 }
-.table td, .table th {
+#personalInfo td, #personalInfo th {
     padding: 8px;
 } 
 
-.table th {
+#personalInfo th {
     padding-top: 12px;
     padding-bottom: 12px;
 }
@@ -19,7 +18,7 @@
     padding-bottom: 8px;
 }
 
-.btn:hover {background-color: #DCDCDC;} */
+.btn:hover {background-color: #DCDCDC;} 
 /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
 
 /* 
