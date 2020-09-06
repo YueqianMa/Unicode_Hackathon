@@ -1,5 +1,5 @@
 # Unicode_Hackathon
-线上游戏组队平台
+9PM线上游戏组队平台
 
 ```bash
 ░█████╗░  ██████╗░███╗░░░███╗
@@ -10,18 +10,17 @@
 ░╚════╝░  ╚═╝░░░░░╚═╝░░░░░╚═╝
 ```
 
-Deployed at: 
+Deployed at: https://pm-teamup.web.app
 
 ## Getting Started
 
 In order to work on this project, you should have <br>
 
 1. Git - A version control tool
-2. 
 
 ### Prerequisites
 
-Install Git
+Install Git (on MacOS)
 ```bash
 git --version
 ```
