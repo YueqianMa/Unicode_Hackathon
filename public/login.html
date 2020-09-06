@@ -172,84 +172,88 @@
 
 
                                         $('#signInButton').click(function() {
-                                            var email = $('#inputEmail').val();
-                                            var pwd = $('#inputPassword').val();
-                                            if (email == '' || pwd == '') {
-                                                alert("Please fill in all the fields!");
-                                            } else if (!validateEmail(email)) {
-                                                alert('Please enter a valid email address!')
-                                            } else {
-                                                // alert(email)
-                                                // alert(pwd)
-                                                //window.location.href = "personal.html";
+                                            window.location.href = "personal.html";
 
-                                                $.ajax({
-                                                    url: 'http://localhost:8080/login',
-                                                    data: {
-                                                        "email": email,
-                                                        "password": pwd
-                                                    },
-                                                    type: 'get',
-                                                    dataType: "json",
-                                                    contentType: 'application/x-www-form-urlencoded',
-                                                    success: function(response) {
-                                                        if (response.code == 200) {
-                                                            sessionStorage.setItem("token", response.data);
-                                                            sessionStorage.setItem("id", parseInt(response.msg));
-                                                            sessionStorage.setItem("email", email)
-                                                            window.location.href = "personal.html";
-                                                        }
-                                                        else if (resposne.code == 400) {
-                                                            alert(response.msg);
-                                                        } else {
-                                                            alert("Error")
-                                                        }
-                                                    },
-                                                    error: function(err) {
-                                                        alert(JSON.stringify(err));
-                                                    }
-                                                });
-                                            }
+                                            // var email = $('#inputEmail').val();
+                                            // var pwd = $('#inputPassword').val();
+                                            // if (email == '' || pwd == '') {
+                                            //     alert("Please fill in all the fields!");
+                                            // } else if (!validateEmail(email)) {
+                                            //     alert('Please enter a valid email address!')
+                                            // } else {
+                                            //     // alert(email)
+                                            //     // alert(pwd)
+                                            //     //window.location.href = "personal.html";
+
+                                            //     $.ajax({
+                                            //         url: 'http://localhost:8080/login',
+                                            //         data: {
+                                            //             "email": email,
+                                            //             "password": pwd
+                                            //         },
+                                            //         type: 'get',
+                                            //         dataType: "json",
+                                            //         contentType: 'application/x-www-form-urlencoded',
+                                            //         success: function(response) {
+                                            //             if (response.code == 200) {
+                                            //                 sessionStorage.setItem("token", response.data);
+                                            //                 sessionStorage.setItem("id", parseInt(response.msg));
+                                            //                 sessionStorage.setItem("email", email)
+                                            //                 window.location.href = "personal.html";
+                                            //             }
+                                            //             else if (resposne.code == 400) {
+                                            //                 alert(response.msg);
+                                            //             } else {
+                                            //                 alert("Error")
+                                            //             }
+                                            //         },
+                                            //         error: function(err) {
+                                            //             alert(JSON.stringify(err));
+                                            //         }
+                                            //     });
+                                            // }
                                         });
 
                                         $('#signUpButton').click(function() {
-                                            var email = $('#inputEmail').val();
-                                            var pwd = $('#inputPassword').val();
-                                            var confirmPwd = $('#repeatPassword').val();
-                                            if (email == '' || pwd == '' || confirmPwd == '') {
-                                                alert("Please fill in all the fields!");
-                                            } else if (!validateEmail(email)) {
-                                                alert('Please enter a valid email address!')
-                                            } else if (pwd !== confirmPwd) {
-                                                alert("密码不一致!")
-                                            } else {
-                                                $.ajax({
-                                                    url: 'http://localhost:8080/register',
-                                                    data: {
-                                                        "email": email,
-                                                        "password": pwd
-                                                    },
-                                                    type: 'post',
-                                                    dataType: "json",
-                                                    contentType: 'application/x-www-form-urlencoded',
-                                                    success: function(response) {
-                                                        if (response.code == 201) {
-                                                            sessionStorage.setItem("token", response.data);
-                                                            sessionStorage.setItem("id", parseInt(response.msg));
-                                                            sessionStorage.setItem("email", email)
-                                                            window.location.href = "personal.html";
-                                                        }
-                                                        else if (resposne.code == 400) {
-                                                            alert(response.msg);
-                                                        } else {
-                                                            alert("Error")
-                                                        }
-                                                    },
-                                                    error: function(err) {
-                                                        alert(JSON.stringify(err));
-                                                    }
-                                                });
-                                            }
+                                            window.location.href = "personal.html";
+
+                                            // var email = $('#inputEmail').val();
+                                            // var pwd = $('#inputPassword').val();
+                                            // var confirmPwd = $('#repeatPassword').val();
+                                            // if (email == '' || pwd == '' || confirmPwd == '') {
+                                            //     alert("Please fill in all the fields!");
+                                            // } else if (!validateEmail(email)) {
+                                            //     alert('Please enter a valid email address!')
+                                            // } else if (pwd !== confirmPwd) {
+                                            //     alert("密码不一致!")
+                                            // } else {
+                                            //     $.ajax({
+                                            //         url: 'http://localhost:8080/register',
+                                            //         data: {
+                                            //             "email": email,
+                                            //             "password": pwd
+                                            //         },
+                                            //         type: 'post',
+                                            //         dataType: "json",
+                                            //         contentType: 'application/x-www-form-urlencoded',
+                                            //         success: function(response) {
+                                            //             if (response.code == 201) {
+                                            //                 sessionStorage.setItem("token", response.data);
+                                            //                 sessionStorage.setItem("id", parseInt(response.msg));
+                                            //                 sessionStorage.setItem("email", email)
+                                            //                 window.location.href = "personal.html";
+                                            //             }
+                                            //             else if (resposne.code == 400) {
+                                            //                 alert(response.msg);
+                                            //             } else {
+                                            //                 alert("Error")
+                                            //             }
+                                            //         },
+                                            //         error: function(err) {
+                                            //             alert(JSON.stringify(err));
+                                            //         }
+                                            //     });
+                                            //}
                                         });
                                     })
                                 </script>
