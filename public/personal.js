@@ -3,7 +3,7 @@ $(document).ready(function () {
     var email = sessionStorage.getItem('email');
     var id = sessionStorage.getItem('id');
 
-    $('#personalEmail').val(email);
+    $('#personalEmail').html(email);
 
 
     $("#tabs").tabs();
@@ -37,10 +37,10 @@ $(document).ready(function () {
 
                     $('#personalUsername').val(response.data.name)
                     $('#gender').val(response.data.sex)
-                    $('#personalPassword').val(response.data.sex)
+                    $('#personalPassword').val(response.data.password)
                 }
                 else if (response.code == 401) {
-                    window.location.href = "personal.html"
+                    window.location.href = "login.html"
                 } else {
                     alert("Error!")
                 }
@@ -70,11 +70,11 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.code == 200) {
                     $('#personalEmail').val(response.data.email)
-                    $('#personalUsername').val(response.data.name)
+                    $('#personalPassword').val(response.data.password)
                     $('#gender').val(response.data.sex)
                 }
                 else if (response.code == 401) {
-                    window.location.href = "personal.html"
+                    window.location.href = "login.html"
                 } else {
                     alert("Error!")
                 }
