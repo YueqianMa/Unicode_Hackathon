@@ -1,4 +1,41 @@
 $(document).ready(function () {
+    let myTeamData = [
+        {
+            "id": 1,
+            "date": "2020-09-10",
+            "time": "13:00",
+            "game": "LOL",
+            "members":"William, Richard, Michael"
+        },
+        {
+            "id": 2,
+            "date": "2020-09-13",
+            "time": "21:00",
+            "game": "Arean of Valor",
+            "members":"Nancy, Ben, Tom"
+        },
+    ]
+
+    let data2 = [
+        {
+            "id": 1,
+            "date": "2020-09-10",
+            "time": "13:00",
+            "game": "LOL",
+            "host": "Ben",
+            "members":"William, Richard, Michael"
+        },
+        {
+            "id": 2,
+            "date": "2020-09-13",
+            "time": "21:00",
+            "game": "Arean of Valor",
+            "host": "Rose",
+            "members":"Nancy, Ben, Tom"
+        },
+    ]
+
+
     var token = sessionStorage.getItem('token');
     var email = sessionStorage.getItem('email');
     var id = sessionStorage.getItem('id');
@@ -9,7 +46,6 @@ $(document).ready(function () {
     $("#tabs").tabs();
 
     $(document).ready(function() {
-        getMyInfo();
         getMyTeam();
         getJoinedTeam();
     })
@@ -86,83 +122,72 @@ $(document).ready(function () {
     })
 
     function getMyTeam() {
-        // get all reports from database with edit, delete, and assign btns for each data entry 
-        var displaytable = $('#myTeam tbody');
-                displaytable.empty();
-                $(myTeamData).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='date'>" + element.date + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='member'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td class='member4'>" + element.member4 + '</td>'
-                        + "<td><input type='button' class='edit_members btn' value='Members' /></td>"
-                        + "<td><input type='button' class='edit_myTeam btn' value='Edit' /></td>"
-                        + "<td><input type='button' class='delete_myTeam btn' value='Delete' /></td>"
-                        + "</tr>")
-                });
-                $('#myTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                    "bLengthChange": false,
-                });
-        $.ajax({
-            url: 'http://localhost:8080/users',
-            dataType: 'json',
-            method: 'post',
-            data: JSON.stringify({
-                email: sessionStorage.getItem('email')
-            }),
-            success: function (data) {
-                if (data == "-1") {
-                    alert("Error!");
-                }
-                var parsed = JSON.parse(data);
-                var displaytable = $('#myTeam tbody');
-                displaytable.empty();
-                $(parsed).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td class='member4'>" + element.member4 + '</td>'
-                        + "<td><input type='button' class='edit btn' value='Edit' /></td>"
-                        + "<td><input type='button' class='delete btn' value='Delete' /></td>"
-                        + "</tr>")
-                });
-                $('#myTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                       "bLengthChange": false,
-                });
-            },
-            error: function (err) {
-                alert(JSON.stringify(err));
-            }
+        let displaytable = $('#myTeam tbody');
+        displaytable.empty();
+        $(myTeamData).each(function (index, element) {
+            displaytable.append("<tr>"
+                + "<td class='id'>" + element.id + '</td>'
+                + "<td class='date2'>" + element.date + '</td>'
+                + "<td class='time2'>" + element.time + '</td>'
+                + "<td class='game2'>" + element.game + '</td>'
+                + "<td class='members2'>" + element.members + '</td>'
+                + "<td><input type='button' class='edit btn' value='Edit' /></td>"
+                + "<td><input type='button' class='delete btn' value='Delete' /></td>"
+                + "</tr>")
         });
+        $('#myTeam').DataTable({
+            paging: true,
+            stripeClasses: [],
+            autoWidth: false,
+            "bLengthChange": false,
+        });
+        // $.ajax({
+        //     url: 'http://localhost:8080/rooms/host',
+        //     headers: {"Authorization": token},
+        //     dataType: "json",
+        //     contentType: 'application/x-www-form-urlencoded',
+        //     type: 'get',
+        //     data: {
+        //         "id": id,
+        //     },
+        //     success: function (response) {
+        //         var parsed = JSON.parse(response.data);
+        //         var displaytable = $('#myTeam tbody');
+        //         displaytable.empty();
+        //         $(parsed).each(function (index, element) {
+        //             displaytable.append("<tr>"
+        //                 + "<td class='room_id'>" + element.id + '</td>'
+        //                 + "<td class='dateTime'>" + element.dateTime + '</td>'
+        //                 + "<td class='game'>" + element.gameName + '</td>'
+        //                 + "<td class='members'>" + element.membersId + '</td>'
+        //                 // + "<td><input type='button' class='edit btn' value='Edit' /></td>"
+        //                 + "<td><input type='button' class='delete btn' value='Delete' /></td>"
+        //                 + "</tr>")
+        //         });
+        //         $('#myTeam').DataTable({
+        //             paging: true,
+        //             stripeClasses: [],
+        //             autoWidth: false,
+        //             "bLengthChange": false,
+        //         });
+        //     },
+        //     error: function (err) {
+        //         alert(JSON.stringify(err));
+        //     }
+        // });
     };
 
     function getJoinedTeam() {
         var displaytable = $('#joinedTeam tbody');
                 displaytable.empty();
-                $(interested_joined_data).each(function (index, element) {
+                $(data2).each(function (index, element) {
                     displaytable.append("<tr>"
                         + "<td class='room_id'>" + element.room_id + '</td>'
                         + "<td class='date'>" + element.date + '</td>'
                         + "<td class='time'>" + element.time + '</td>'
                         + "<td class='game'>" + element.game + '</td>'
                         + "<td class='host'>" + element.host + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
+                        + "<td class='members'>" + element.members + '</td>'
                         + "<td><input type='button' class='leave_joinedTeam btn' value='Leave' /></td>"
                         + "</tr>")
                 });
