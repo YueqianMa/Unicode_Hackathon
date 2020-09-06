@@ -40,7 +40,7 @@ $(document).ready(function () {
     var email = sessionStorage.getItem('email');
     var id = sessionStorage.getItem('id');
 
-    $('#personalEmail').html(email);
+    $('#personalEmail').html('richardma6666@gmail.com');
 
 
     $("#tabs").tabs();
