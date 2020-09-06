@@ -223,21 +223,17 @@
                                             } else if (pwd !== confirmPwd) {
                                                 alert("密码不一致!")
                                             } else {
-                                                alert(email)
-                                                alert(pwd)
-                                                alert(confirmPwd)
-                                                    //window.location.href = "personal.html";
                                                 $.ajax({
                                                     url: 'http://localhost:8080/register',
                                                     data: {
                                                         "email": email,
-                                                        "pwd": pwd
+                                                        "password": pwd
                                                     },
                                                     type: 'post',
                                                     dataType: "json",
                                                     contentType: 'application/x-www-form-urlencoded',
                                                     success: function(response) {
-                                                        if (response.code == 200) {
+                                                        if (response.code == 201) {
                                                             sessionStorage.setItem("token", response.data);
                                                             sessionStorage.setItem("id", parseInt(response.msg));
                                                             sessionStorage.setItem("email", email)
