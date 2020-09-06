@@ -1,5 +1,7 @@
 # Unicode_Hackathon
 9PM线上游戏组队平台
+项目提案和介绍：https://docs.google.com/presentation/d/1xxo0vJVxeq9Jp34qIB20DBxtNMR-meGrGq05NZNhiUk/edit?usp=sharing
+
 
 ```bash
 ░█████╗░  ██████╗░███╗░░░███╗
