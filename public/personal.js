@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var token = sessionStorage.getItem('token');
     var email = sessionStorage.getItem('email');
     var id = sessionStorage.getItem('id');
@@ -20,35 +20,43 @@ $(document).ready(function () {
 
 
     function getMyInfo() {
-        $.ajax({
-            url: 'http://localhost:8080/users',
-            headers: {"Authorization": token},
-            data: {
-                "id": id,
-            },
-            type: 'get',
-            dataType: "json",
-            contentType: 'application/x-www-form-urlencoded',
-            success: function (response) {
-                if (response.code == 200) {
-                    current_personalUsername = response.data.name;
-                    current_gender = response.data.sex;
-                    current_password = response.data.password;
+        // $.ajax({
+        //     url: 'http://localhost:8080/users',
+        //     headers: {"Authorization": token},
+        //     data: {
+        //         "id": id,
+        //     },
+        //     type: 'get',
+        //     dataType: "json",
+        //     contentType: 'application/x-www-form-urlencoded',
+        //     success: function (response) {
+        //         if (response.code == 200) {
+        //             current_personalUsername = response.data.name;
+        //             current_gender = response.data.sex;
+        //             current_password = response.data.password;
 
-                    $('#personalUsername').val(response.data.name)
-                    $('#gender').val(response.data.sex)
-                    $('#personalPassword').val(response.data.password)
-                }
-                else if (response.code == 401) {
-                    window.location.href = "login.html"
-                } else {
-                    alert("Error!")
-                }
-            },
-            error: function (err) {
-                alert(JSON.stringify(err));
-            }
-        });
+        //             $('#personalUsername').val(response.data.name)
+        //             $('#gender').val(response.data.sex)
+        //             $('#personalPassword').val(response.data.password)
+        //         }
+        //         else if (response.code == 401) {
+        //             window.location.href = "login.html"
+        //         } else {
+        //             alert("Error!")
+        //         }
+        //     },
+        //     error: function (err) {
+        //         alert(JSON.stringify(err));
+        //     }
+        // });
+
+        current_personalUsername = "abc@ucsd.edu";
+        current_gender = male;
+        current_password = 123;
+
+        $('#personalUsername').val(response.data.name)
+        $('#gender').val(response.data.sex)
+        $('#personalPassword').val(response.data.password)
     };
 
     $('#edit_personalInfo').click(function() {
@@ -57,7 +65,7 @@ $(document).ready(function () {
         let pwd = $('#personalPassword').val()
         $.ajax({
             url: 'http://localhost:8080/users',
-            headers: {"Authorization": token},
+            headers: { "Authorization": token },
             data: {
                 "id": id,
                 "name": name,
@@ -67,19 +75,18 @@ $(document).ready(function () {
             type: 'put',
             dataType: "json",
             contentType: 'application/x-www-form-urlencoded',
-            success: function (response) {
+            success: function(response) {
                 if (response.code == 200) {
                     $('#personalEmail').val(response.data.email)
                     $('#personalPassword').val(response.data.password)
                     $('#gender').val(response.data.sex)
-                }
-                else if (response.code == 401) {
+                } else if (response.code == 401) {
                     window.location.href = "login.html"
                 } else {
                     alert("Error!")
                 }
             },
-            error: function (err) {
+            error: function(err) {
                 alert(JSON.stringify(err));
             }
         });
@@ -88,90 +95,107 @@ $(document).ready(function () {
     function getMyTeam() {
         // get all reports from database with edit, delete, and assign btns for each data entry 
         var displaytable = $('#myTeam tbody');
-                displaytable.empty();
-                $(myTeamData).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='date'>" + element.date + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='member'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td class='member4'>" + element.member4 + '</td>'
-                        + "<td><input type='button' class='edit_members btn' value='Members' /></td>"
-                        + "<td><input type='button' class='edit_myTeam btn' value='Edit' /></td>"
-                        + "<td><input type='button' class='delete_myTeam btn' value='Delete' /></td>"
-                        + "</tr>")
-                });
-                $('#myTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                    "bLengthChange": false,
-                });
-        $.ajax({
-            url: 'http://localhost:8080/users',
-            dataType: 'json',
-            method: 'post',
-            data: JSON.stringify({
-                email: sessionStorage.getItem('email')
-            }),
-            success: function (data) {
-                if (data == "-1") {
-                    alert("Error!");
-                }
-                var parsed = JSON.parse(data);
-                var displaytable = $('#myTeam tbody');
-                displaytable.empty();
-                $(parsed).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td class='member4'>" + element.member4 + '</td>'
-                        + "<td><input type='button' class='edit btn' value='Edit' /></td>"
-                        + "<td><input type='button' class='delete btn' value='Delete' /></td>"
-                        + "</tr>")
-                });
-                $('#myTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                       "bLengthChange": false,
-                });
-            },
-            error: function (err) {
-                alert(JSON.stringify(err));
-            }
+        displaytable.empty();
+        $(myTeamData).each(function(index, element) {
+            displaytable.append("<tr>" +
+                "<td class='room_id'>" + element.room_id + '</td>' +
+                "<td class='date'>" + element.date + '</td>' +
+                "<td class='time'>" + element.time + '</td>' +
+                "<td class='game'>" + element.game + '</td>' +
+                "<td class='member'>" + element.member1 + '</td>' +
+                "<td class='member2'>" + element.member2 + '</td>' +
+                "<td class='member3'>" + element.member3 + '</td>' +
+                "<td class='member4'>" + element.member4 + '</td>' +
+                "<td><input type='button' class='edit_members btn' value='Members' /></td>" +
+                "<td><input type='button' class='edit_myTeam btn' value='Edit' /></td>" +
+                "<td><input type='button' class='delete_myTeam btn' value='Delete' /></td>" +
+                "</tr>")
+        });
+        $('#myTeam').DataTable({
+            paging: true,
+            stripeClasses: [],
+            autoWidth: false,
+            "bLengthChange": false,
+        });
+        // $.ajax({
+        //     url: 'http://localhost:8080/users',
+        //     dataType: 'json',
+        //     method: 'post',
+        //     data: JSON.stringify({
+        //         email: sessionStorage.getItem('email')
+        //     }),
+        //     success: function(data) {
+        //         if (data == "-1") {
+        //             alert("Error!");
+        //         }
+        //         var parsed = JSON.parse(data);
+        //         var displaytable = $('#myTeam tbody');
+        //         displaytable.empty();
+        //         $(parsed).each(function(index, element) {
+        //             displaytable.append("<tr>" +
+        //                 "<td class='room_id'>" + element.room_id + '</td>' +
+        //                 "<td class='time'>" + element.time + '</td>' +
+        //                 "<td class='game'>" + element.game + '</td>' +
+        //                 "<td class='member1'>" + element.member1 + '</td>' +
+        //                 "<td class='member2'>" + element.member2 + '</td>' +
+        //                 "<td class='member3'>" + element.member3 + '</td>' +
+        //                 "<td class='member4'>" + element.member4 + '</td>' +
+        //                 "<td><input type='button' class='edit btn' value='Edit' /></td>" +
+        //                 "<td><input type='button' class='delete btn' value='Delete' /></td>" +
+        //                 "</tr>")
+        //         });
+        //         $('#myTeam').DataTable({
+        //             paging: true,
+        //             stripeClasses: [],
+        //             autoWidth: false,
+        //             "bLengthChange": false,
+        //         });
+        //     },
+        //     error: function(err) {
+        //         alert(JSON.stringify(err));
+        //     }
+        // });
+        displaytable.append("<tr>" +
+            "<td class='room_id'>" + "1" + '</td>' +
+            "<td class='time'>" + "2020-9-1" + '</td>' +
+            "<td class='game'>" + "lol" + '</td>' +
+            "<td class='member1'>" + "abc@ucsd.edu" + '</td>' +
+            "<td class='member2'>" + "zzd@ucsd.edu" + '</td>' +
+            // "<td class='member3'>" + element.member3 + '</td>' +
+            // "<td class='member4'>" + element.member4 + '</td>' +
+            "<td><input type='button' class='edit btn' value='Edit' /></td>" +
+            "<td><input type='button' class='delete btn' value='Delete' /></td>" +
+            "</tr>")
+        $('#myTeam').DataTable({
+            paging: true,
+            stripeClasses: [],
+            autoWidth: false,
+            "bLengthChange": false,
         });
     };
 
     function getJoinedTeam() {
         var displaytable = $('#joinedTeam tbody');
-                displaytable.empty();
-                $(interested_joined_data).each(function (index, element) {
-                    displaytable.append("<tr>"
-                        + "<td class='room_id'>" + element.room_id + '</td>'
-                        + "<td class='date'>" + element.date + '</td>'
-                        + "<td class='time'>" + element.time + '</td>'
-                        + "<td class='game'>" + element.game + '</td>'
-                        + "<td class='host'>" + element.host + '</td>'
-                        + "<td class='member1'>" + element.member1 + '</td>'
-                        + "<td class='member2'>" + element.member2 + '</td>'
-                        + "<td class='member3'>" + element.member3 + '</td>'
-                        + "<td><input type='button' class='leave_joinedTeam btn' value='Leave' /></td>"
-                        + "</tr>")
-                });
-                $('#joinedTeam').DataTable({
-                    paging: true,
-                    stripeClasses: [],
-                    autoWidth: false,
-                    "bLengthChange": false,
-                });
+        displaytable.empty();
+        $(interested_joined_data).each(function(index, element) {
+            displaytable.append("<tr>" +
+                "<td class='room_id'>" + element.room_id + '</td>' +
+                "<td class='date'>" + element.date + '</td>' +
+                "<td class='time'>" + element.time + '</td>' +
+                "<td class='game'>" + element.game + '</td>' +
+                "<td class='host'>" + element.host + '</td>' +
+                "<td class='member1'>" + element.member1 + '</td>' +
+                "<td class='member2'>" + element.member2 + '</td>' +
+                "<td class='member3'>" + element.member3 + '</td>' +
+                "<td><input type='button' class='leave_joinedTeam btn' value='Leave' /></td>" +
+                "</tr>")
+        });
+        $('#joinedTeam').DataTable({
+            paging: true,
+            stripeClasses: [],
+            autoWidth: false,
+            "bLengthChange": false,
+        });
         // $.ajax({
         //     url: url + 'getJoinedTeam',
         //     dataType: 'json',
@@ -227,7 +251,7 @@ $(document).ready(function () {
         // }
     });
 
-    $("body").on("click", ".ui-widget-overlay", function () {
+    $("body").on("click", ".ui-widget-overlay", function() {
         // close dialogs when click outside the dialogs
         $('#edit_myTeam_dialog').dialog("close");
         $('#delete_myTeam_dialog').dialog("close");
@@ -268,7 +292,7 @@ $(document).ready(function () {
     // };
     // add_shared_user();
 
-    $(document).on('click', '.edit_myTeam', function () {
+    $(document).on('click', '.edit_myTeam', function() {
         // when click on the edit btn
         current_room_id = $(this).closest('tr').children('td.room_id').text();;
         current_date = $(this).closest('tr').children('td.date').text();;
@@ -289,7 +313,7 @@ $(document).ready(function () {
         $('#edit_myTeam_dialog').dialog('open');
     });
 
-    $('#edit_myTeam_btn').click(function () {
+    $('#edit_myTeam_btn').click(function() {
         // when click on submit btn on edit dialog 
         var new_room_id = $('#edit_room_id').val();
         var new_date = $('#edit_date').val();
@@ -300,44 +324,44 @@ $(document).ready(function () {
         var new_member3 = $('#edit_member3').val();
         var new_member4 = $('#edit_member4').val();
 
-        if ((current_name == new_name) && (current_group_id == new_group_id) 
-            && (current_report_id == new_report_id) && (current_dataset_id == new_dataset_id)) {
+        if ((current_name == new_name) && (current_group_id == new_group_id) &&
+            (current_report_id == new_report_id) && (current_dataset_id == new_dataset_id)) {
             alert('Please enter in new information!');
         } else {
             alert("some ajax")
-            // $.ajax({
-            //     url: url + 'editReport',
-            //     method: 'put',
-            //     data: JSON.stringify({
-            //         'old_room_id': current_room_id,
-            //         'old_date': current_date,
-            //         'old_time': current_time,
-            //         'old_game': current_game,
-            //         'old_member1': current_member1,
-            //         'old_member1': current_member2,
-            //         'old_member1': current_member3,
-            //         'old_member1': current_member4,
-            //         'new_room_id': new_room_id,
-            //         'new_date': new_date,
-            //         'new_time': new_time,
-            //         'new_game': new_game,
-            //         'new_member1': new_member1,
-            //         'new_member1': new_member2,
-            //         'new_member1': new_member3,
-            //         'new_member1': new_member4,
-            //     }),
-            //     contentType: "application/json; charset=utf-8",
-            //     success: function (response) {
-            //         alert()
-            //     },
-            //     error: function (err) {
-            //         alert(err);
-            //     }
-            //});
+                // $.ajax({
+                //     url: url + 'editReport',
+                //     method: 'put',
+                //     data: JSON.stringify({
+                //         'old_room_id': current_room_id,
+                //         'old_date': current_date,
+                //         'old_time': current_time,
+                //         'old_game': current_game,
+                //         'old_member1': current_member1,
+                //         'old_member1': current_member2,
+                //         'old_member1': current_member3,
+                //         'old_member1': current_member4,
+                //         'new_room_id': new_room_id,
+                //         'new_date': new_date,
+                //         'new_time': new_time,
+                //         'new_game': new_game,
+                //         'new_member1': new_member1,
+                //         'new_member1': new_member2,
+                //         'new_member1': new_member3,
+                //         'new_member1': new_member4,
+                //     }),
+                //     contentType: "application/json; charset=utf-8",
+                //     success: function (response) {
+                //         alert()
+                //     },
+                //     error: function (err) {
+                //         alert(err);
+                //     }
+                //});
         }
     });
 
-    $(document).on('click', '.delete_myTeam', function () {
+    $(document).on('click', '.delete_myTeam', function() {
         // when click on delete btn 
         current_room_id = $(this).closest('tr').children('td.room_id').text();
         current_date = $(this).closest('tr').children('td.date').text();
@@ -351,7 +375,7 @@ $(document).ready(function () {
         $('#delete_myTeam_dialog').dialog('open');
     });
 
-    $('#yes_myTeam').click(function () {
+    $('#yes_myTeam').click(function() {
         // when click on yes on delete dialog 
         alert("some ajax");
         // $.ajax({
@@ -378,13 +402,13 @@ $(document).ready(function () {
         $('#delete_myTeam_dialog').dialog('close');
     });
 
-    $('.no').click(function () {
+    $('.no').click(function() {
         // when click on no on delete dialog 
         $('#delete_myTeam_dialog').dialog('close');
     });
 
-    
-    $(document).on('click', '.leave_joinedTeam', function () {
+
+    $(document).on('click', '.leave_joinedTeam', function() {
         // when click on delete btn 
         current_room_id = $(this).closest('tr').children('td.room_id').text();
         current_date = $(this).closest('tr').children('td.date').text();
@@ -398,7 +422,7 @@ $(document).ready(function () {
         $('#leave_joinedTeam_dialog').dialog('open');
     });
 
-    $('#yes_joinedTeam').click(function () {
+    $('#yes_joinedTeam').click(function() {
         // when click on yes on delete dialog 
         alert("some ajax");
         // $.ajax({
